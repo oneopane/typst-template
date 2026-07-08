@@ -17,7 +17,17 @@ Then update `main.typ` to include `src/01_notes/index.typ` instead of `src/01_no
 
 Let $x in bbR$ and $A in cA$. We can write $norm(x)$, $abs(x)$, and $argmax_(x in bbR) f(x)$.
 
-Expectation examples: #EE[$X$], #EE[$X$, given: $Y$], and #EE[$X$, given: $Y$, measure: $P$].
+Probability examples: #EE[$X$], #EE[$X$, given: $Y$], #EE[$X$, given: $Y$, measure: $P$], #Var[$X$, given: $Y$], and #Cov($X$, $Y$, given: $Z$).
+
+Specialized notation can be imported only where it is needed:
+
+```typst
+#import "../macros/category.typ" as cat
+#import "../macros/type-theory.typ" as tt
+#import "../macros/diagrams.typ": commdiag, edge
+```
+
+Namespaced imports help avoid collisions in mixed-domain notes.
 
 #definition(title: [Reusable template])[
 A notes template separates document assembly, layout, notation, content, assets, and bibliography data.
