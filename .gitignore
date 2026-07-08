@@ -1,0 +1,28 @@
+# OS / editor noise
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Jujutsu repository metadata
+.jj/
+
+# Generated Typst outputs
+out/*
+!out/.gitkeep
+
+# Python / uv caches
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.uv-cache/
+
+# Node dependencies for project-local extensions
+node_modules/
+.pi/extensions/**/node_modules/
+
+# Logs and local session exports
+*.log
+pi-session-*.html
