@@ -72,8 +72,8 @@
 // ---------- Delimiter Helpers ----------
 #let abs(x) = $lr(|#x|)$
 #let norm(x) = $lr(||#x||)$
-#let inner(x, y) = $angle.l #x, #y angle.r$
+#let inner(x, y) = $chevron.l #x, #y chevron.r$
 // Typst reserves `set` as a keyword, so the set-builder helper is named `setof`.
 #let setof(x) = $lr({#x})$
-#let ceil(x) = $lr(ceil.l #x ceil.r)$
-#let floor(x) = $lr(floor.l #x floor.r)$
+#let ceil(x) = $lr(⌈#x⌉)$
+#let floor(x) = $lr(⌊#x⌋)$

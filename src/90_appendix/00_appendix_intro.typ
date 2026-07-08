@@ -28,13 +28,13 @@ Optional domain modules can be imported directly:
 
 For category-theory diagrams, import the diagram module only in notes that use it:
 
-```typst
 #import "../../macros/diagrams.typ": commdiag, edge
 
-#commdiag($
-  A edge("r", f) edge("d", g) & B edge("d", h) \\
-  C edge("r", k) & D
-$)
-```
+#align(center)[
+  #commdiag($
+    A edge("r", f, "->") edge("d", g, "->") & B edge("d", h, "->") \
+    C edge("r", k, "->") & D
+  $)
+]
 
 The diagram module is intentionally not part of the default bundle because it pulls in Fletcher and its dependencies.

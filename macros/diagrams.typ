@@ -5,8 +5,8 @@
 //
 // Example:
 //   #commdiag($
-//     A edge("r", f) edge("d", g) & B edge("d", h) \\
-//     C edge("r", k) & D
+//     A edge("r", f, "->") edge("d", g, "->") & B edge("d", h, "->") \\
+//     C edge("r", k, "->") & D
 //   $)
 
 #import "@preview/fletcher:0.5.8": diagram, node, edge

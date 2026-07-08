@@ -335,9 +335,9 @@ Probability helpers support optional conditioning and measure arguments:
 
 ```typst
 #EE[$X$]
-#EE[$X$, given: $Y$]
-#EE[$X$, given: $Y$, measure: $P$]
-#Var[$X$, given: $Y$]
+#EE($X$, given: $Y$)
+#EE($X$, given: $Y$, measure: $P$)
+#Var($X$, given: $Y$)
 #Cov($X$, $Y$, given: $Z$)
 ```
 
@@ -348,8 +348,8 @@ Specialized modules can be imported directly or with a namespace:
 #import "../../macros/diagrams.typ": commdiag, edge
 
 #commdiag($
-  A edge("r", f) edge("d", g) & B edge("d", h) \\
-  C edge("r", k) & D
+  A edge("r", f, "->") edge("d", g, "->") & B edge("d", h, "->") \\
+  C edge("r", k, "->") & D
 $)
 ```
 

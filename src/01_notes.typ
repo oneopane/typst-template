@@ -17,7 +17,7 @@ Then update `main.typ` to include `src/01_notes/index.typ` instead of `src/01_no
 
 Let $x in bbR$ and $A in cA$. We can write $norm(x)$, $abs(x)$, and $argmax_(x in bbR) f(x)$.
 
-Probability examples: #EE[$X$], #EE[$X$, given: $Y$], #EE[$X$, given: $Y$, measure: $P$], #Var[$X$, given: $Y$], and #Cov($X$, $Y$, given: $Z$).
+Probability examples: #EE[$X$], #EE($X$, given: $Y$), #EE($X$, given: $Y$, measure: $P$), #Var($X$, given: $Y$), and #Cov($X$, $Y$, given: $Z$).
 
 Specialized notation can be imported only where it is needed:
 
@@ -44,7 +44,7 @@ When layout, notation, and content live in separate files, most edits have a sin
 ]
 
 #example(title: [Conditioning helper])[
-The expectation macro supports conditioning: #EE[$X$, given: $Y$].
+The expectation macro supports conditioning: #EE($X$, given: $Y$).
 ]
 
 #remark[

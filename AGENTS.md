@@ -279,9 +279,9 @@ Specialized modules can be imported directly, preferably with a namespace when c
 
 ```typst
 #EE[$X$]
-#EE[$X$, given: $Y$]
-#EE[$X$, given: $Y$, measure: $P$]
-#Var[$X$, given: $Y$]
+#EE($X$, given: $Y$)
+#EE($X$, given: $Y$, measure: $P$)
+#Var($X$, given: $Y$)
 #Cov($X$, $Y$, given: $Z$)
 ```
 
