@@ -321,20 +321,36 @@ Adjust relative paths from the file doing the referencing.
 
 ## Macros
 
-`macros.typ` provides helpers such as `bbR`, `cA`, `norm(x)`, `EE`, `definition`, `theorem`, `lemma`, `proposition`, `corollary`, `example`, `remark`, `proof`, `note`, and `todo`.
+`macros.typ` is the default compatibility bundle. It re-exports common helpers from `macros/` such as `bbR`, `cA`, `norm(x)`, `EE`, `Var`, `Cov`, `definition`, `theorem`, `lemma`, `proposition`, `corollary`, `example`, `remark`, `proof`, `note`, and `todo`.
 
-Content files that use macros should import them with the correct relative path, for example:
+Domain-specific modules live under `macros/` and can be imported directly when needed. `macros/diagrams.typ` is opt-in and imports Fletcher for category-theory diagrams.
+
+Content files that use the default bundle should import it with the correct relative path, for example:
 
 ```typst
 #import "../macros.typ": *
 ```
 
-The `EE` helper supports optional conditioning and measure arguments:
+Probability helpers support optional conditioning and measure arguments:
 
 ```typst
 #EE[$X$]
 #EE[$X$, given: $Y$]
 #EE[$X$, given: $Y$, measure: $P$]
+#Var[$X$, given: $Y$]
+#Cov($X$, $Y$, given: $Z$)
+```
+
+Specialized modules can be imported directly or with a namespace:
+
+```typst
+#import "../../macros/category.typ" as cat
+#import "../../macros/diagrams.typ": commdiag, edge
+
+#commdiag($
+  A edge("r", f) edge("d", g) & B edge("d", h) \\
+  C edge("r", k) & D
+$)
 ```
 
 Theorem-like environments preserve bare block syntax and accept optional `title:` arguments:

@@ -16,7 +16,8 @@ The repository is optimized for two users:
 - `main.typ`: thin assembly layer only. Imports shared files, reads `notes.toml`/`sys.inputs` metadata, applies the template, includes public top-level content entrypoints, and wires `refs.bib`.
 - `notes.toml`: reproducible document metadata defaults (`title`, `author`, `date`). Empty `author`/`date` values are omitted from the title block.
 - `template.typ`: all document layout and style logic, including page setup, fonts, heading numbering, title block, table of contents, and spacing.
-- `macros.typ`: reusable notation, operators, callouts, theorem environments, and formatting helpers.
+- `macros.typ`: backwards-compatible default macro bundle that re-exports common modules from `macros/`.
+- `macros/`: reusable notation, operators, optional domain modules, callouts, theorem environments, formatting helpers, and opt-in diagram helpers.
 - `src/`: document content only.
 - `assets/figures/`: figures.
 - `assets/images/`: images.
@@ -26,7 +27,7 @@ The repository is optimized for two users:
 - `.pi/extensions/typst-axi/`: project-local Pi AXI extension exposing structured Typst/template tools for agents.
 - `out/`: compiled output.
 
-Do not move layout logic into `main.typ` or `src/`. Do not put durable notation in content files. Do not put content in `template.typ` or `macros.typ`.
+Do not move layout logic into `main.typ` or `src/`. Do not put durable notation in content files. Do not put content in `template.typ` or `macros.typ`; add durable notation to an appropriate `macros/*.typ` module and re-export it from `macros.typ` only when it belongs in the default bundle.
 
 ## Tooling contract
 
@@ -263,14 +264,25 @@ Use the CLI for persistent metadata changes:
 
 ## Macros and imports
 
-Keep reusable notation and environments in `macros.typ`. Content files that use macros may import `macros.typ` with a relative `#import`, but must not redefine durable notation locally.
+Keep reusable notation and environments in `macros/` modules. `macros.typ` is the default compatibility bundle and re-exports common modules (`core`, `probability`, `environments`, and `formatting`). Content files that use common macros may import `macros.typ` with a relative `#import`, but must not redefine durable notation locally.
 
-`EE` is a function with optional arguments:
+Specialized modules can be imported directly, preferably with a namespace when collisions are possible:
+
+```typst
+#import "../../macros/category.typ" as cat
+#import "../../macros/diagrams.typ": commdiag, edge
+```
+
+`macros/diagrams.typ` is opt-in because it imports Fletcher (`@preview/fletcher:0.5.8`) for category-theory diagrams.
+
+`EE`, `Var`, and `Cov` are functions with optional arguments:
 
 ```typst
 #EE[$X$]
 #EE[$X$, given: $Y$]
 #EE[$X$, given: $Y$, measure: $P$]
+#Var[$X$, given: $Y$]
+#Cov($X$, $Y$, given: $Z$)
 ```
 
 The theorem-like environments (`definition`, `theorem`, `lemma`, `proposition`, `corollary`, `example`, `remark`) preserve bare block syntax and accept optional `title:` arguments. Add references with normal Typst labels after the macro call, not a `label:` argument:
