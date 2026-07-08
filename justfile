@@ -1,6 +1,7 @@
 # Common project commands for the Typst notes template.
 
 notes := "./tools/notes.py"
+init_template := "./tools/init-template.py"
 
 # Open the interactive notes CLI.
 default:
@@ -9,6 +10,12 @@ default:
 # Show CLI help.
 help:
     @{{notes}} --help
+
+# Initialize a new notes project from this template.
+# Interactive: just init
+# Direct:      just init ../my-notes "My Notes"
+init target="" title="" *args:
+    @{{init_template}} "{{target}}" "{{title}}" {{args}}
 
 # Open the interactive notes CLI.
 ui:

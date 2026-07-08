@@ -20,6 +20,7 @@ Reusable Typst notes template with a stable, tree-shaped include graph, shared l
 ├── macros.typ            # notation, helpers, callouts, theorem environments
 ├── refs.bib              # bibliography entries
 ├── justfile              # command aliases
+├── tools/init-template.py # copy/init helper for new notes projects
 ├── tools/notes.py        # uv-backed Rich maintenance CLI
 ├── .pi/extensions/typst-axi/ # project-local Pi AXI extension
 ├── src/                  # document content only
@@ -34,6 +35,24 @@ Reusable Typst notes template with a stable, tree-shaped include graph, shared l
 ```
 
 ## Quick start
+
+Create a new notes project from this template with the interactive initializer:
+
+```sh
+just init
+```
+
+Or pass arguments to run it non-interactively:
+
+```sh
+just init ../my-notes "My Notes"
+```
+
+Optional metadata and VCS initialization can be passed through:
+
+```sh
+just init ../my-notes "My Notes" --author "Ada" --date "2026-01-01" --vcs jj
+```
 
 Open the interactive CLI:
 
@@ -66,6 +85,7 @@ just check
 just                       # open the interactive notes CLI
 just ui                    # same interactive menu explicitly
 just help                  # show CLI help
+just init [DIR TITLE]      # copy this template into a new notes project; interactive with no args
 just tree                  # show the physical src/ tree
 just map                   # show the include graph rooted at main.typ
 just map-write CONTENTS.md # write a Markdown include map

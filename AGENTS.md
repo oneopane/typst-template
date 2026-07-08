@@ -22,7 +22,8 @@ The repository is optimized for two users:
 - `assets/figures/`: figures.
 - `assets/images/`: images.
 - `refs.bib`: bibliography entries.
-- `justfile`: thin command aliases. Keep these aligned with `tools/notes.py`.
+- `justfile`: thin command aliases. Keep these aligned with `tools/notes.py` and `tools/init-template.py`.
+- `tools/init-template.py`: stdlib Python helper that copies this template into a new notes project, resets metadata, optionally initializes VCS, and validates the result.
 - `tools/notes.py`: executable uv script providing the Rich CLI for interactive and direct maintenance workflows.
 - `.pi/extensions/typst-axi/`: project-local Pi AXI extension exposing structured Typst/template tools for agents.
 - `out/`: compiled output.
@@ -35,6 +36,8 @@ Prefer repository tooling for structural changes:
 
 ```sh
 just                         # interactive Rich menu
+just init                    # interactive project initializer
+just init ../my-notes "My Notes"
 just new-dry src 02_topic
 just new src 02_topic
 just new src 03_probability/
@@ -51,11 +54,11 @@ just bib
 just assets
 ```
 
-Direct CLI equivalents are available through `./tools/notes.py`. Running `./tools/notes.py` with no arguments opens the interactive menu. The script uses a uv shebang and inline dependencies; do not convert it to a project package unless explicitly requested.
+Direct CLI equivalents are available through `./tools/notes.py`. Running `./tools/notes.py` with no arguments opens the interactive menu. The template initialization helper is `./tools/init-template.py` for interactive use or `./tools/init-template.py TARGET TITLE [--author ...] [--date ...] [--vcs none|jj|git]` for direct use. `tools/notes.py` uses a uv shebang and inline dependencies; do not convert it to a project package unless explicitly requested.
 
 Agents should prefer direct, non-interactive commands for deterministic edits and validation. `structure`, `map`, `doctor`, `new`, `promote`, `renumber`, `metadata`, `labels`, `bib`, and `assets` support `--json` for machine-readable output; `new`, `promote`, `renumber`, and `metadata` support `--dry-run` previews. Inside Pi after `/reload`, prefer the AXI tools (`typst_query`, `typst_check`, `typst_build`, `typst_notes`) over raw shell commands. `typst_query` exposes `bibliography`/`bib_entries` and `assets`/`asset_references` read-only views; bibliography-entry and asset-reference mutations remain future work until the CLI owns robust JSON plans. The interactive menu is primarily for humans, but it must remain functional.
 
-When changing `tools/notes.py` or `.pi/extensions/typst-axi/`, also update:
+When changing `tools/notes.py`, `tools/init-template.py`, or `.pi/extensions/typst-axi/`, also update:
 
 1. `justfile`, if commands or arguments change.
 2. `.pi/extensions/typst-axi/README.md`, if AXI behavior changes.
